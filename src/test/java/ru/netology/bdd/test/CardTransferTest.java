@@ -57,16 +57,16 @@ public class CardTransferTest {
     void shouldTransferMoneyFrom2To1() {
         transferMoneyBetweenCards(getCard2(), getCard1(), dashboardPage.getRandomTransferAmount(getCard1()));
     }
-//
-//    @Test
-//    void shouldFailOnOverdraftFrom1To2() {
-//        transferMoneyBetweenCardsAboveBalance(getCard1(), getCard2());
-//    }
-//
-//    @Test
-//    void shouldFailOnOverdraftFrom2To1() {
-//        transferMoneyBetweenCardsAboveBalance(getCard2(), getCard1());
-//    }
+
+    @Test
+    void shouldFailOnOverdraftFrom1To2() {
+        transferMoneyBetweenCardsAboveBalance(getCard1(), getCard2());
+    }
+
+    @Test
+    void shouldFailOnOverdraftFrom2To1() {
+        transferMoneyBetweenCardsAboveBalance(getCard2(), getCard1());
+    }
 
     @Test
     @Order(3)
@@ -75,12 +75,12 @@ public class CardTransferTest {
         transferPage.transfer(getUnknownCard(), 1);
         transferPage.checkErrorNotification("Ошибка! Произошла ошибка");
     }
-//
-//    @Test
-//    @Order(4)
-//    void shouldFailOnSameCard() {
-//        var transferPage = dashboardPage.transferToCard(getCard2());
-//        transferPage.transfer(getCard2(), 1);
-//        transferPage.checkErrorNotification("Нельзя списать и перевести средства с одной и той же карты");
-//    }
+
+    @Test
+    @Order(4)
+    void shouldFailOnSameCard() {
+        var transferPage = dashboardPage.transferToCard(getCard2());
+        transferPage.transfer(getCard2(), 1);
+        transferPage.checkErrorNotification("Нельзя списать и перевести средства с одной и той же карты");
+    }
 }
