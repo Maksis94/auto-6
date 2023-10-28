@@ -7,6 +7,7 @@ import ru.netology.bdd.data.DataHelper.CardInfo;
 import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class DashboardPage {
     public DashboardPage() {
@@ -16,8 +17,17 @@ public class DashboardPage {
     private SelenideElement getCard(CardInfo cardInfo) {
         return $("ul.list > li.list__item > div[data-test-id='" + cardInfo.getId() + "']");
     }
+
+    private SelenideElement getCardByIndex(int index) {
+        return $$("ul.list > li.list__item > div[data-test-id]").get(index - 1);
+    }
+
     public int getCardBalance(CardInfo cardInfo) {
         return extractBalance(getCard(cardInfo).getText());
+    }
+
+    public int getCardBalanceByIndex(int index) {
+        return extractBalance(getCardByIndex(index).getText());
     }
 
     public int getRandomTransferAmount(CardInfo cardInfo) {
@@ -31,6 +41,11 @@ public class DashboardPage {
 
     public TransferPage transferToCard(CardInfo cardInfo) {
         getCard(cardInfo).$("[data-test-id=action-deposit]").click();
+        return new TransferPage();
+    }
+
+    public TransferPage transferToCardByIndex(int index) {
+        getCardByIndex(index).$("[data-test-id=action-deposit]").click();
         return new TransferPage();
     }
 

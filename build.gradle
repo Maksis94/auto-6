@@ -22,6 +22,10 @@ dependencies {
     testImplementation 'com.codeborne:selenide:6.17.1'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'io.rest-assured:rest-assured:4.3.0'
+
+    testImplementation 'io.cucumber:cucumber-java:7.1.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.1.0'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.32'
 }
 
 test {
